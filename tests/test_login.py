@@ -32,25 +32,24 @@ def driver_init():
 
 
 @pytest.mark.django_db(transaction=True)
-def test_user_login(live_server_at_host, driver_init, django_user_model):
+def test_admin_user_login(live_server_at_host, driver_init, admin_user):
     """
     As a superuser with valid credentials, I should gain
     access to the Django admin.
     """
     driver = driver_init
     live_server_url = str(live_server_at_host)
-    user = django_user_model.objects.create(username="george", password="password1234")
-    user.save()
 
     driver.get(live_server_url)
     username_input = driver.find_element_by_name('username')
-    username_input.send_keys('george')
+    username_input.send_keys('admin')
     password_input = driver.find_element_by_name('password')
-    password_input.send_keys('password1234')
+    password_input.send_keys('password')
     driver.find_element_by_xpath('//input[@value="Log in"]').click()
 
     path = urlparse(driver.current_url).path
+    import pdb; pdb.set_trace()
     assert path == '/'
 
     body_text = driver.find_element_by_tag_name('body').text
-    assert 'WELCOME, GEORGE.' in body_text
+    assert 'WELCOME, ADMIN.' in body_text
