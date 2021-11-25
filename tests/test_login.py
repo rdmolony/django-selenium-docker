@@ -48,7 +48,6 @@ def test_admin_user_login(live_server_at_host, driver_init, admin_user):
     driver.find_element_by_xpath('//input[@value="Log in"]').click()
 
     path = urlparse(driver.current_url).path
-    import pdb; pdb.set_trace()
     assert path == '/'
 
     body_text = driver.find_element_by_tag_name('body').text
