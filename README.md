@@ -23,4 +23,7 @@
 
 3. Run the tests
 
-   `$ docker-compose run django`
+   ```bash
+   $ docker-compose run django bash
+   $ pytest
+   ```
