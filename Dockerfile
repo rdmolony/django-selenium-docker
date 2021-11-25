@@ -7,5 +7,3 @@ RUN pip install -r requirements.txt
 ADD . /code
 
 VOLUME /code
-
-CMD ["python", "manage.py", "test", "--noinput"]
