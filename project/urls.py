@@ -1,6 +1,6 @@
-from django.conf.urls import url
+from django.conf.urls import re_path
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^', admin.site.urls),
+    re_path(r'^', admin.site.urls),
 ]
