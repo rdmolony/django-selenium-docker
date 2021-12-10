@@ -36,7 +36,7 @@ def browser() -> webdriver.Remote:
     browser_.quit()
 
 
-@pytest.mark.django_db
+@pytest.mark.django_db(transaction=True)
 def test_manual_admin_user_login(
     live_server_url: str, browser: webdriver.Remote, admin_user: User
 ) -> None:
@@ -75,7 +75,7 @@ def authenticated_browser(
     return browser
 
 
-@pytest.mark.django_db
+@pytest.mark.django_db(transaction=True)
 def test_auto_admin_user_login(
     live_server_url: str, authenticated_browser: webdriver.Remote, admin_user: User
 ) -> None:
