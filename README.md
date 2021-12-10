@@ -2,28 +2,21 @@
 
 > I've adapted [marcgibbons/django-selenium-docker](https://github.com/marcgibbons/django-selenium-docker) replacing `unittest` with `pytest` with the help of `pytest-django`
 
-## Requirements
-- Docker
-- Docker-compose
-- VNC Viewer (optional for debugging)
-  - [NoVNC](https://github.com/novnc/noVNC)
-  - or [RealVNC](https://www.realvnc.com/en/connect/download/viewer/)
+1. Install [`docker`](https://docs.docker.com/get-docker/)
 
-## Installation
-
-`$ docker-compose build`
-
-## Running the tests
-
-1. Start the selenium container:
-
-   `$ docker-compose start selenium`
-
-2. Open VNC Viewer and connect to `localhost:5900`. Password is `secret`
-
-3. Run the tests
+2. Launch selenium & django
 
    ```bash
-   $ docker-compose run django bash
-   $ pytest
+   docker-compose up
+   ```
+
+3. Open `localhost:7900` in your browser to view `Selenium` in action. Password is `secret`
+
+   > `selenium/standalone-chrome` uses [`NoVNC`](https://github.com/novnc/noVNC) to hook into the running `selenium` browser
+
+4. Hook in to the running Django container and run the tests
+
+   ```bash
+   docker exec django bash
+   pytest
    ```
