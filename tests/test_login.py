@@ -87,3 +87,7 @@ def test_auto_admin_user_login(
 
     body_text = browser.find_element_by_tag_name('body').text
     assert 'WELCOME, ADMIN.' in body_text
+
+
+def test_admin_user_is_authenticated(admin_user: User) -> None:
+    assert authenticate(username="admin", password="password")
